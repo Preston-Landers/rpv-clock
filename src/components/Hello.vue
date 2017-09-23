@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ msg }} {{ timestamp_display }}</h1>
+<!--
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -17,6 +18,7 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+-->
   </div>
 </template>
 
@@ -25,8 +27,25 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      created_at: new Date(),
+      now: new Date(),
+      msg: 'Welcome!'
     }
+  },
+  computed: {
+    timestamp_display: function () {
+      // let now = new Date()
+      // console.log('Now is', this.now)
+      let label = this.now.toISOString()
+      return label
+    }
+  },
+  mounted: function () {
+    let self = this
+    setInterval(function () {
+      // console.log('updating ticker')
+      self.now = new Date()
+    }, 500)
   }
 }
 </script>

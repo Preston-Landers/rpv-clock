@@ -1,8 +1,23 @@
 # rpv-clock
 
-> A clock and weather app for Raspberry Pi
+This is my customized clock / billboard / weather JS/HTML app.
 
-## Build Setup
+It is intended as a Raspberry Pi related project but has no specific dependencies; 
+it can run in any browser.
+
+This is also a Vue.js learning exercise for me.
+
+## Features
+
+None currently.
+
+## Build / Development
+
+The following is from the vue-cli template.
+
+### Build Setup
+
+https://vuejs-templates.github.io/webpack/commands.html
 
 ``` bash
 # install dependencies
