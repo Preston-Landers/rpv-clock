@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="main-panel">
     <h1>{{ msg }} {{ timestamp_display }}</h1>
 <!--
     <h2>Essential Links</h2>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'main-panel',
   data () {
     return {
       created_at: new Date(),

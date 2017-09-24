@@ -14,8 +14,8 @@ module.exports = {
 
     browser
       .url(devServer)
-      .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('.hello')
+      .waitForElementVisible('#clock-app', 5000)
+      .assert.elementPresent('.main-panel')
       .assert.containsText('h1', now_fmt)
       .assert.elementCount('img', 1)
       .end()
