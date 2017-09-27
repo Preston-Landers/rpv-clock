@@ -1,5 +1,5 @@
 <template>
-  <div class="main-panel">
+  <div id="rpv-main-panel" class="main-panel">
     <div class="rpv-clock-weather">
       <div class="rpv-clock">
         <div class="rpv-clock-time rpv-mono">

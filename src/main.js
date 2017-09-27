@@ -11,5 +11,5 @@ new Vue({
   el: '#clock-app',
   router,
   template: '<ClockApp/>',
-  components: { ClockApp }
+  components: {ClockApp}
 })
