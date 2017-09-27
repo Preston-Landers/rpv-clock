@@ -1,72 +1,156 @@
 <template>
   <div class="main-panel">
-    <h1>{{ msg }} {{ timestamp_display }}</h1>
-<!--
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
--->
+    <div class="rpv-clock-weather">
+      <div class="rpv-clock">
+        <div class="rpv-clock-time rpv-mono">
+          <span class="rpv-clock-hours">{{hoursFormatted}}</span>
+          <span class="rpv-clock-colon">:</span>
+          <span class="rpv-clock-minutes">{{minutesFormatted}}</span>
+
+        </div>
+        <div class="rpv-clock-ampm-seconds">
+          <div class="rpv-ampm rpv-mono" :class="amPmClass">
+            {{amPmFormatted}}
+          </div>
+          <div class="rpv-seconds rpv-mono">{{secondsFormatted}}</div>
+        </div>
+      </div>
+      <div class="rpv-date-weather">
+        <div class="rpv-weather">
+          Weather
+        </div>
+        <div class="rpv-date">
+          Date
+        </div>
+      </div>
+    </div>
+    <div class="rpv-ticker">
+      News headlines here.
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'main-panel',
-  data () {
-    return {
-      created_at: new Date(),
-      now: new Date(),
-      msg: 'Welcome!'
+  import moment from 'moment'
+
+  export default {
+    name: 'main-panel',
+    data () {
+      return {
+        updateIntervalMS: 500,
+        createdAtDate: moment(new Date()),
+        now: moment(new Date()),
+        msg: 'Welcome!'
+      }
+    },
+    computed: {
+//      mainTimeFormatted: function () {
+//        return this.now.format('h:mm')
+//      },
+      amPmFormatted: function () {
+        return this.now.format('a')
+      },
+      hoursFormatted: function () {
+        return this.now.format('h')
+      },
+      minutesFormatted: function () {
+        return this.now.format('mm')
+      },
+      secondsFormatted: function () {
+        return this.now.format('ss')
+      },
+      amPmClass: function () {
+        if (this.now.hour() >= 12) {
+          return 'rpv-is-pm'
+        }
+        return 'rpv-is-am'
+      }
+    },
+    mounted: function () {
+      let self = this
+      setInterval(function () {
+        // console.log('updating ticker')
+        self.now = moment(new Date())
+      }, self.updateIntervalMS)
     }
-  },
-  computed: {
-    timestamp_display: function () {
-      // let now = new Date()
-      // console.log('Now is', this.now)
-      let label = this.now.toISOString()
-      return label
-    }
-  },
-  mounted: function () {
-    let self = this
-    setInterval(function () {
-      // console.log('updating ticker')
-      self.now = new Date()
-    }, 500)
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+  .main-panel {
+    height: 100%;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  .rpv-clock-weather {
+    height: 75%;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  .rpv-ticker {
+    height: 25%;
+  }
 
-a {
-  color: #42b983;
-}
+  .rpv-clock {
+    width: 80%;
+    float: left;
+    height: 100%;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+
+  }
+
+  .rpv-is-pm {
+    font-variant: small-caps;
+  }
+
+  .rpv-is-am {
+    font-style: italic;
+  }
+
+  .rpv-mono {
+    /*font-family: 'VT323', monospace;*/
+    font-family: 'Inconsolata', monospace;
+    font-weight: bold;
+  }
+
+  .rpv-clock-time {
+    font-size: 50vh;
+    transform: scale(1, 1.7);
+  }
+
+  .rpv-clock-colon {
+    margin-left: -30vh;
+    margin-right: -30vh;
+    position: relative;
+    top: -5vh;
+  }
+
+  .rpv-clock-ampm-seconds {
+    margin-left: 5vh;
+    margin-right: -15vh;
+  }
+
+  .rpv-ampm {
+    font-size: 18vh;
+  }
+
+  .rpv-seconds {
+    font-size: 20vh;
+  }
+
+  .rpv-date-weather {
+    width: 20%;
+    float: left;
+    height: 100%;
+  }
+
+  .rpv-weather {
+    height: 50%;
+  }
+
+  .rpv-date {
+    height: 50%;
+  }
+
 </style>
