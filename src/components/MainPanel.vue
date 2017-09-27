@@ -20,7 +20,7 @@
           Weather
         </div>
         <div class="rpv-date">
-          Date
+          <date-panel :now="now"></date-panel>
         </div>
       </div>
     </div>
@@ -32,8 +32,10 @@
 
 <script>
   import moment from 'moment'
+  import DatePanel from './DatePanel.vue'
 
   export default {
+    components: {DatePanel},
     name: 'main-panel',
     data () {
       return {

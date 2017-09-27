@@ -44,7 +44,9 @@
       const slideout = new Slideout({
         'panel': document.getElementById('panel'),
         'menu': document.getElementById('menu'),
-        'padding': 160,
+        // 'padding': 160,
+        'padding': parseInt(document.documentElement.clientWidth * 0.25),
+        // 'padding': '20vh',
         'tolerance': 70
       })
 
